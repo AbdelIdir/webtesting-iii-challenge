@@ -11,10 +11,12 @@ let wrapper;
 
 let Unlocked = () => wrapper.queryByText("Unlocked");
 let Open = () => wrapper.queryByText("Open");
+let OpenGate = () => wrapper.queryByText("Open Gate");
 let LockGate = () => wrapper.queryByText("Lock Gate");
 let CloseGate = () => wrapper.queryByText("Close Gate");
 let Closed = () => wrapper.queryByText("Closed");
 let Locked = () => wrapper.queryByText("Locked");
+let UnlockGate = () => wrapper.queryByText("Unlock Gate");
 
 beforeEach(() => {
   wrapper = rtl.render(<Dashboard />);
@@ -43,6 +45,11 @@ describe("Dashboard component renders properly", () => {
 
     expect(CloseGate()).toBeInTheDocument();
     expect(CloseGate()).toBeVisible();
+    rtl.fireEvent.click(CloseGate());
+    expect(OpenGate()).toBeInTheDocument();
+
+    rtl.fireEvent.click(LockGate());
+    expect(UnlockGate()).toBeInTheDocument();
 
     //   expect(Closed()).toBeInTheDocument();
     //   expect(Closed()).toBeVisible();
@@ -58,7 +65,7 @@ describe("Dashboard component,when we close the gate", () => {
     expect(CloseGate()).toBe(null);
   });
 
-  it(' shows that "Open" disappears when "Close Gate" is clicked ', () => {
+  it(' shows that "Open" disappears when "Close Gate" is clicked ,shows relevant "red-led" classes when closed and locked', () => {
     rtl.fireEvent.click(CloseGate());
     expect(Open()).toBe(null);
     expect(Closed()).toBeInTheDocument();
@@ -71,5 +78,31 @@ describe("Dashboard component,when we close the gate", () => {
     rtl.fireEvent.click(CloseGate());
     // rtl.fireEvent.click(LockGate());
     expect(wrapper.container).toMatchSnapshot();
+  });
+});
+
+describe("Testing for controls", () => {
+  it('provide buttons to toggle the "closed" and "locked" states', () => {
+    expect(CloseGate()).toHaveClass("toggle-btn");
+    rtl.fireEvent.click(CloseGate());
+    rtl.fireEvent.click(LockGate());
+    expect(UnlockGate()).toHaveClass("toggle-btn");
+  });
+
+  it("buttons text changes to reflect the state the door will be in if clicked ", () => {
+    rtl.fireEvent.click(CloseGate());
+    expect(OpenGate()).toBeInTheDocument();
+    expect(LockGate()).toBeInTheDocument();
+  });
+
+  it("the closed toggle button is disabled if the gate is locked", () => {
+    rtl.fireEvent.click(CloseGate());
+    rtl.fireEvent.click(LockGate());
+
+    expect(LockGate()).not.toBeInTheDocument();
+  });
+
+  it("the locked toggle button is disabled if the gate is open", () => {
+    expect(LockGate()).toBeDisabled();
   });
 });
