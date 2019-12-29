@@ -61,5 +61,6 @@ describe("Dashboard component,when we close the gate", () => {
   it(' shows that "Open" disappears when "Close Gate" is clicked ', () => {
     rtl.fireEvent.click(CloseGate());
     expect(Open()).toBe(null);
+    expect(Closed()).toBeInTheDocument();
   });
 });
