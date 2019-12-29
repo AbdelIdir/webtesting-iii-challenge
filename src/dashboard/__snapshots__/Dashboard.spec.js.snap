@@ -33,3 +33,36 @@ exports[`Dashboard component renders properly renders without crashing 1`] = `
   </div>
 </div>
 `;
+
+exports[`Dashboard component,when we close the gate matches snapshot after closing the gate 1`] = `
+<div>
+  <div
+    class="display panel"
+  >
+    <div
+      class="led green-led"
+    >
+      Unlocked
+    </div>
+    <div
+      class="led red-led"
+    >
+      Closed
+    </div>
+  </div>
+  <div
+    class="controls panel"
+  >
+    <button
+      class="toggle-btn"
+    >
+      Lock Gate
+    </button>
+    <button
+      class="toggle-btn"
+    >
+      Open Gate
+    </button>
+  </div>
+</div>
+`;

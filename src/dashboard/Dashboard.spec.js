@@ -63,4 +63,9 @@ describe("Dashboard component,when we close the gate", () => {
     expect(Open()).toBe(null);
     expect(Closed()).toBeInTheDocument();
   });
+
+  it("matches snapshot after closing the gate", () => {
+    rtl.fireEvent.click(CloseGate());
+    expect(wrapper.container).toMatchSnapshot();
+  });
 });
