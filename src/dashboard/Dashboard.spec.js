@@ -30,4 +30,13 @@ it("renders a 'Unlocked' text node ", () => {
   //   expect(wrapper.queryByText("Unlocked")).toBeVisible();
   expect(Unlocked()).toBeInTheDocument();
   expect(Unlocked()).toBeVisible();
+
+  expect(Open()).toBeInTheDocument();
+  expect(Open()).toBeVisible();
+
+  expect(Lock()).toBeInTheDocument();
+  expect(Lock()).toBeVisible();
+
+  expect(Close()).toBeInTheDocument();
+  expect(Close()).toBeVisible();
 });
