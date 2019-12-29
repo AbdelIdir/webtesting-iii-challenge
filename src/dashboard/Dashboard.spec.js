@@ -74,6 +74,11 @@ describe("Dashboard component,when we close the gate", () => {
     expect(Locked()).toHaveClass("red-led");
   });
 
+  it("-when `unlocked` or `open` use the `green-led` class", () => {
+    expect(Open()).toHaveClass("green-led");
+    expect(Unlocked()).toHaveClass("green-led");
+  });
+
   it("matches snapshot after closing the gate", () => {
     rtl.fireEvent.click(CloseGate());
     // rtl.fireEvent.click(LockGate());
