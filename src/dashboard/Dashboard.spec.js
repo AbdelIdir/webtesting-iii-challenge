@@ -62,10 +62,14 @@ describe("Dashboard component,when we close the gate", () => {
     rtl.fireEvent.click(CloseGate());
     expect(Open()).toBe(null);
     expect(Closed()).toBeInTheDocument();
+    expect(Closed()).toHaveClass("red-led");
+    rtl.fireEvent.click(LockGate());
+    expect(Locked()).toHaveClass("red-led");
   });
 
   it("matches snapshot after closing the gate", () => {
     rtl.fireEvent.click(CloseGate());
+    // rtl.fireEvent.click(LockGate());
     expect(wrapper.container).toMatchSnapshot();
   });
 });
