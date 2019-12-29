@@ -25,7 +25,7 @@ it("renders without crashing", () => {
   expect(wrapper.container).toMatchSnapshot();
 });
 
-it("renders a 'Unlocked' text node ", () => {
+it("renders a 'Unlocked,Open,Lock Gate,Close Gate' text nodes ", () => {
   //   expect(wrapper.queryByText("Unlocked")).toBeInTheDocument();
   //   expect(wrapper.queryByText("Unlocked")).toBeVisible();
   expect(Unlocked()).toBeInTheDocument();
